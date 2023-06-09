@@ -23,15 +23,20 @@ public class Espera extends Thread{
             switch (type){
                 case 0:
                     if (pg.getValue() == pg.getMaximum()){
-                        System.out.println(pg.getValue());
-                        System.out.println(pg.getMaximum());
                         JOptionPane.showMessageDialog(null, "Evento creado correctamente");
                         stop();
                     }
                     break;
+                case 1:
+                    if (pg.getValue() == pg.getMaximum()){
+                        JOptionPane.showMessageDialog(null, "Registrado exitosamente");
+                        stop();
+                    }
+                    break;
+                    
             }
             try {
-                Thread.sleep(num * 1000);
+                Thread.sleep(num * 100);
             } catch (InterruptedException ex) {
                 
             }
