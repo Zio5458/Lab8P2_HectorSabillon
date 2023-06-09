@@ -9,6 +9,15 @@ public class Evento {
     private String lugar;
     private int personas;
 
+    public Evento(Date fecha, String ciudad, String lugar, int personas) {
+        this.fecha = fecha;
+        this.ciudad = ciudad;
+        this.lugar = lugar;
+        this.personas = personas;
+    }
+
+    
+    
     public Date getFecha() {
         return fecha;
     }

@@ -438,14 +438,20 @@ public class Main extends javax.swing.JFrame {
             Banda s = new Banda(f, rUsuario.getText(), rContra.getText(), rNombre.getText(), rGenero.getText());
             artistas.add(s);
         }
+        JOptionPane.showMessageDialog(this, "Registrado exitosamente");
     }//GEN-LAST:event_bRMouseClicked
 
     private void aEventoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aEventoMouseClicked
-        
+        dAEvento.pack();
+        dAEvento.setLocationRelativeTo(this);
+        dAEvento.setVisible(true);
     }//GEN-LAST:event_aEventoMouseClicked
 
     private void agregarEventoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarEventoMouseClicked
-        
+        Evento evento = new Evento(jDateChooser.getDate(), eCiudad.getText(), eLugar.getText(),(int) eCapacidad.getValue());
+        eventos.add(evento);
+        comboBoxModelUpdate();
+        JOptionPane.showMessageDialog(d1, "Evento creado exitosamente");
     }//GEN-LAST:event_agregarEventoMouseClicked
 
     public static void main(String args[]) {
