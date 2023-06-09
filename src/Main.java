@@ -10,7 +10,8 @@ public class Main extends javax.swing.JFrame {
 
     static ArrayList<Usuario> usuarios = new ArrayList();
     static ArrayList<Evento> eventos = new ArrayList();
-    static ArrayList<Cancion> canciones;
+    static Artista ar;
+    static ArrayList<Cancion> canciones = new ArrayList();
     static ArrayList<Artista> artistas = new ArrayList();
     static int b = 0;
 
@@ -77,6 +78,11 @@ public class Main extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton1.setText("Agregar Cancion");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         Registrar.setText("Registrar");
         Registrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -419,7 +425,7 @@ public class Main extends javax.swing.JFrame {
         dIS.getContentPane().setLayout(dISLayout);
         dISLayout.setHorizontalGroup(
             dISLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 536, Short.MAX_VALUE)
             .addGroup(dISLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(dISLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -428,7 +434,7 @@ public class Main extends javax.swing.JFrame {
         );
         dISLayout.setVerticalGroup(
             dISLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 379, Short.MAX_VALUE)
             .addGroup(dISLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(dISLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -580,6 +586,7 @@ public class Main extends javax.swing.JFrame {
             a = artistas.get(i).getUsuario() + "," + artistas.get(i).getContra();
             if (t.equals(a)){
                 JOptionPane.showMessageDialog(d1, "Ha entrado con exito");
+                ar = artistas.get(i);
                 b = 1;
                 break;
             }
@@ -589,6 +596,14 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(d1, "No se ha encontrado un usuario con estos datos");
         }
     }//GEN-LAST:event_isLoginMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        String n =JOptionPane.showInputDialog(d1, "Ingrese nombre de la cancion");
+        int d = Integer.parseInt(JOptionPane.showInputDialog(d1, "Ingrese duracion de la cancion"));
+        Cancion c = new Cancion(n, d);
+        ar.getCanciones().add(c);
+        canciones.add(c);
+    }//GEN-LAST:event_jButton1MouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
