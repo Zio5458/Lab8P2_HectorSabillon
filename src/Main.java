@@ -457,10 +457,8 @@ public class Main extends javax.swing.JFrame {
         Evento evento = new Evento(jDateChooser.getDate(), eCiudad.getText(), eLugar.getText(),(int) eCapacidad.getValue());
         eventos.add(evento);
         comboBoxModelUpdate();
-        Espera espera = new Espera(1, aEventoPG);
+        Espera espera = new Espera(8, aEventoPG, 0);
         espera.start();
-        
-        JOptionPane.showMessageDialog(d1, "Evento creado exitosamente");
     }//GEN-LAST:event_agregarEventoMouseClicked
 
     public static void main(String args[]) {
