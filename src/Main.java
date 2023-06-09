@@ -12,6 +12,7 @@ public class Main extends javax.swing.JFrame {
     static ArrayList<Evento> eventos = new ArrayList();
     static ArrayList<Cancion> canciones;
     static ArrayList<Artista> artistas = new ArrayList();
+    static int b = 0;
 
     public Main() {
         initComponents();
@@ -572,14 +573,20 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void isLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isLoginMouseClicked
+        b = 0;
         String t = isUsuario.getText() + "," + isContra.getText();
         String a;
         for (int i = 0; i < artistas.size(); i++){
             a = artistas.get(i).getUsuario() + "," + artistas.get(i).getContra();
             if (t.equals(a)){
                 JOptionPane.showMessageDialog(d1, "Ha entrado con exito");
+                b = 1;
                 break;
             }
+            dIS.dispose();
+        }
+        if (b == 0){
+            JOptionPane.showMessageDialog(d1, "No se ha encontrado un usuario con estos datos");
         }
     }//GEN-LAST:event_isLoginMouseClicked
 
