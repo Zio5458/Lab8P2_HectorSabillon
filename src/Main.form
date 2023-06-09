@@ -310,7 +310,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jLabel14" min="-2" pref="266" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
@@ -334,13 +339,12 @@
                               <EmptySpace min="-2" pref="265" max="-2" attributes="0"/>
                               <Component id="agregarEvento" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+                              <Component id="aEventoPG" min="-2" pref="425" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace pref="141" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jLabel14" min="-2" pref="266" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -370,7 +374,9 @@
                       </Group>
                       <EmptySpace pref="80" max="32767" attributes="0"/>
                       <Component id="agregarEvento" min="-2" pref="43" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                      <Component id="aEventoPG" min="-2" pref="19" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -434,6 +440,8 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Agregar Evento"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JProgressBar" name="aEventoPG">
             </Component>
           </SubComponents>
         </Container>

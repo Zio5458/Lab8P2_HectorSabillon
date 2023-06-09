@@ -55,6 +55,7 @@ public class Main extends javax.swing.JFrame {
         eCapacidad = new javax.swing.JSpinner();
         agregarEvento = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
+        aEventoPG = new javax.swing.JProgressBar();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -258,6 +259,10 @@ public class Main extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(186, 186, 186))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -277,12 +282,11 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(eCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(265, 265, 265)
-                        .addComponent(agregarEvento)))
+                        .addComponent(agregarEvento))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addComponent(aEventoPG, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(141, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(186, 186, 186))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,7 +310,9 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(eLugar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addComponent(agregarEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(156, 156, 156))
+                .addGap(58, 58, 58)
+                .addComponent(aEventoPG, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79))
         );
 
         javax.swing.GroupLayout dAEventoLayout = new javax.swing.GroupLayout(dAEvento.getContentPane());
@@ -451,6 +457,9 @@ public class Main extends javax.swing.JFrame {
         Evento evento = new Evento(jDateChooser.getDate(), eCiudad.getText(), eLugar.getText(),(int) eCapacidad.getValue());
         eventos.add(evento);
         comboBoxModelUpdate();
+        Espera espera = new Espera(1, aEventoPG);
+        espera.start();
+        
         JOptionPane.showMessageDialog(d1, "Evento creado exitosamente");
     }//GEN-LAST:event_agregarEventoMouseClicked
 
@@ -521,6 +530,7 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Registrar;
     private javax.swing.JButton aEvento;
+    private javax.swing.JProgressBar aEventoPG;
     private javax.swing.JButton agregarEvento;
     private javax.swing.JButton bR;
     private javax.swing.JButton botonLogin;
