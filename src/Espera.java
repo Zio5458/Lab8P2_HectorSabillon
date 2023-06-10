@@ -1,5 +1,7 @@
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import javax.swing.table.DefaultTableModel;
@@ -80,6 +82,11 @@ public class Espera extends Thread {
                 }
             }
         } else {
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Espera.class.getName()).log(Level.SEVERE, null, ex);
+            }
             for (int i = 0; i < c.size(); i++) {
                 while (true) {
                     pg.setValue(pg.getValue() + 10);

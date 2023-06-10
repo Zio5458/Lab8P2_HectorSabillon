@@ -681,7 +681,6 @@ public class Main extends javax.swing.JFrame {
     private void empezarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empezarMouseClicked
 
         DefaultTableModel modelo = (DefaultTableModel) table.getModel();
-        Object[] row = new Object[3];
         Espera e = new Espera(10, pgM, 3, modelo, canciones, artistas);
         
         e.start();
