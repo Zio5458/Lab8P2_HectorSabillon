@@ -1,6 +1,9 @@
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -591,11 +594,14 @@ public class Main extends javax.swing.JFrame {
         } else {
             Registrar.setVisible(false);
             aEvento.setVisible(false);
+            usuarios.add(usuario);
         }
+        toBinaryFile();
         comboBoxModelUpdate();
         d1.pack();
         d1.setLocationRelativeTo(this);
         d1.setVisible(true);
+
     }//GEN-LAST:event_botonLoginMouseClicked
 
     private void RegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarMouseClicked
@@ -617,6 +623,7 @@ public class Main extends javax.swing.JFrame {
         }
         Espera espera = new Espera(5, pgRegistrar, 1);
         espera.start();
+        artistasBinario();
     }//GEN-LAST:event_bRMouseClicked
 
     private void aEventoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aEventoMouseClicked
@@ -762,6 +769,60 @@ public class Main extends javax.swing.JFrame {
             }
         }
     }
+
+    public void artistasBinario() {
+        File archivo = new File("./artistas.bin");
+        FileOutputStream fw = null;
+        ObjectOutputStream bw = null;
+        try {
+            fw = new FileOutputStream(archivo);
+            bw = new ObjectOutputStream(fw);
+            for (int i = 0; i < artistas.size(); i++) {
+                bw.writeObject(artistas.get(i));
+            }
+            bw.flush();
+        } catch (Exception ex) {
+        } finally {
+            try {
+                bw.close();
+                fw.close();
+            } catch (Exception ex) {
+            }
+        }
+    }
+
+    public void generarBitacora() {
+        File archivo = null;
+        FileWriter canal = null;
+        BufferedWriter buffer = null;
+        try {            
+            archivo = new File("./bitacora.txt");
+            canal = new FileWriter(archivo, false);
+            buffer = new BufferedWriter(canal);
+            Object[] row = new Object[3];
+            for (int i = 0; i < canciones.size(); i++) {
+                row[0] = canciones.get(i).toString();
+                row[1] = canciones.get(i).getDuracion();
+                row[2] = findArtist(canciones.get(i));
+                String t = (String) row[0] + "," + (String) row[1] + "," + (String) row[2] + "\n";
+                buffer.write(t);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            buffer.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            canal.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Registrar;
     private javax.swing.JButton aEvento;
