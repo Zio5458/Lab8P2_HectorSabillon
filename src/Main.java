@@ -679,18 +679,12 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void empezarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empezarMouseClicked
-        Espera e = new Espera(10, pgM, 3);
-        e.run();
 
         DefaultTableModel modelo = (DefaultTableModel) table.getModel();
         Object[] row = new Object[3];
-        for (int i = 0; i < canciones.size(); i++) {
-            row[0] = canciones.get(i).toString();
-            row[1] = canciones.get(i).getDuracion();
-            row[2] = findArtist(canciones.get(i));
-            modelo.addRow(row);
-        }
-        table.setModel(modelo);
+        Espera e = new Espera(10, pgM, 3, modelo, canciones, artistas);
+        
+        e.start();
 
     }//GEN-LAST:event_empezarMouseClicked
 
