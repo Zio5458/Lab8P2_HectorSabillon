@@ -3,8 +3,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Main extends javax.swing.JFrame {
 
@@ -582,7 +585,7 @@ public class Main extends javax.swing.JFrame {
         Usuario usuario = new Usuario();
         usuario.setUsuario(tUsuario.getText());
         usuario.setContra(tContra.getText());
-        if (usuario.toString().equals(usuarios.get(0).toString())){
+        if (usuario.toString().equals(usuarios.get(0).toString())) {
             Registrar.setVisible(true);
             aEvento.setVisible(true);
         } else {
@@ -592,7 +595,7 @@ public class Main extends javax.swing.JFrame {
         comboBoxModelUpdate();
         d1.pack();
         d1.setLocationRelativeTo(this);
-        d1.setVisible(true);        
+        d1.setVisible(true);
     }//GEN-LAST:event_botonLoginMouseClicked
 
     private void RegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarMouseClicked
@@ -602,13 +605,13 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_RegistrarMouseClicked
 
     private void bRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bRMouseClicked
-        int x = JOptionPane.showConfirmDialog(this, "Esta registrando un solista?");
-        if (x == 0){
-            int e = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese edad"));
+        int x = JOptionPane.showConfirmDialog(d1, "Esta registrando un solista?");
+        if (x == 0) {
+            int e = Integer.parseInt(JOptionPane.showInputDialog(d1, "Ingrese edad"));
             Solista s = new Solista(e, rUsuario.getText(), rContra.getText(), rNombre.getText(), rGenero.getText());
             artistas.add(s);
         } else {
-            int f = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese numero de integrantes"));
+            int f = Integer.parseInt(JOptionPane.showInputDialog(d1, "Ingrese numero de integrantes"));
             Banda s = new Banda(f, rUsuario.getText(), rContra.getText(), rNombre.getText(), rGenero.getText());
             artistas.add(s);
         }
@@ -623,7 +626,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_aEventoMouseClicked
 
     private void agregarEventoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarEventoMouseClicked
-        Evento evento = new Evento(jDateChooser.getDate(), eCiudad.getText(), eLugar.getText(),(int) eCapacidad.getValue());
+        Evento evento = new Evento(jDateChooser.getDate(), eCiudad.getText(), eLugar.getText(), (int) eCapacidad.getValue());
         eventos.add(evento);
         comboBoxModelUpdate();
         Espera espera = new Espera(8, aEventoPG, 0);
@@ -631,43 +634,69 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarEventoMouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        // TODO add your handling code here:
+        dIS.pack();
+        dIS.setLocationRelativeTo(d1);
+        dIS.setVisible(true);
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void isLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isLoginMouseClicked
         b = 0;
         String t = isUsuario.getText() + "," + isContra.getText();
         String a;
-        for (int i = 0; i < artistas.size(); i++){
+        for (int i = 0; i < artistas.size(); i++) {
             a = artistas.get(i).getUsuario() + "," + artistas.get(i).getContra();
-            if (t.equals(a)){
+            if (t.equals(a)) {
                 JOptionPane.showMessageDialog(d1, "Ha entrado con exito");
                 b = 1;
                 break;
             }
             dIS.dispose();
         }
-        if (b == 0){
+        if (b == 0) {
             JOptionPane.showMessageDialog(d1, "No se ha encontrado un usuario con estos datos");
         }
     }//GEN-LAST:event_isLoginMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        String n =JOptionPane.showInputDialog(d1, "Ingrese nombre de la cancion");
+        String n = JOptionPane.showInputDialog(d1, "Ingrese nombre de la cancion");
         int d = Integer.parseInt(JOptionPane.showInputDialog(d1, "Ingrese duracion de la cancion"));
         Cancion c = new Cancion(n, d);
         canciones.add(c);
         String t = "";
-        for (int i = 0; i < artistas.size(); i++){
+        for (int i = 0; i < artistas.size(); i++) {
             t += i + " -> " + artistas.get(i) + "\n";
         }
         int p = Integer.parseInt(JOptionPane.showInputDialog(d1, t + "\nIngrese el artista de la cancion"));
         artistas.get(p).getCanciones().add(c);
+        Espera e = new Espera(3, 2);
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void empezarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empezarMouseClicked
-        Espera e;
+        Espera e = new Espera(10, pgM, 3);
+        e.run();
+
+        DefaultTableModel modelo = (DefaultTableModel) table.getModel();
+        Object[] row = new Object[3];
+        for (int i = 0; i < canciones.size(); i++) {
+            row[0] = canciones.get(i).toString();
+            row[1] = canciones.get(i).getDuracion();
+            row[2] = findArtist(canciones.get(i));
+            modelo.addRow(row);
+        }
+        table.setModel(modelo);
+
     }//GEN-LAST:event_empezarMouseClicked
+
+    public Artista findArtist(Cancion c) {
+        Artista ar;
+        for (int i = 0; i < artistas.size(); i++) {
+            if (artistas.get(i).getCanciones().contains(c)) {
+                ar = artistas.get(i);
+                return ar;
+            }
+        }
+        return null;
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -706,21 +735,21 @@ public class Main extends javax.swing.JFrame {
         usuarios.add(usuario);
     }
 
-    public void comboBoxModelUpdate(){
+    public void comboBoxModelUpdate() {
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) cbEventos.getModel();
-        for (int i = 0; i < eventos.size(); i++){
+        for (int i = 0; i < eventos.size(); i++) {
             modelo.addElement(eventos.get(i).toString());
         }
     }
-    
-    public void toBinaryFile(){
+
+    public void toBinaryFile() {
         File archivo = new File("./usuarios.bin");
         FileOutputStream fw = null;
         ObjectOutputStream bw = null;
         try {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
-            for (int i = 0; i < usuarios.size(); i++){
+            for (int i = 0; i < usuarios.size(); i++) {
                 bw.writeObject(usuarios.get(i));
             }
             bw.flush();

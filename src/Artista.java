@@ -8,7 +8,7 @@ public class Artista {
     protected String contra;
     protected String nombre;
     protected String genero;
-    protected ArrayList<Cancion> canciones;
+    protected ArrayList<Cancion> canciones = new ArrayList();
 
     public Artista(String usuario, String contra, String nombre, String genero) {
         this.usuario = usuario;
